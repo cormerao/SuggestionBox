@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Suggestion Box</title>
+		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+		<script type="text/javascript" src="js/vendor/angular.min.js"></script>
+		<script src="https://code.angularjs.org/1.2.28/angular-route.min.js" type="text/javascript"></script>
+		<link href="css/styles.css" rel="stylesheet" />
+	</head>
+	<body ng-app="SuggestionBox" ng-controller="HomeController">
+		<header>
+			<h1><img id="logo" src="img/logo.png"/>Suggestion Box</h1>
+		</header>
+
+		<!--<div ng-view></div>-->
+
+		<section class="main" class="container">
+			<div ng-repeat="post in posts | orderBy:'-upvotes'">
+				<h2>{{ post.title }}</h2>
+				<p>
+					<span class="glyphicon glyphicon-plus-sign" style="color:green" ng-click="upVote(post)"></span>
+					<span class="glyphicon glyphicon-minus-sign" style="color:red" ng-click="downVote(post)"></span>Upvotes: {{post.upvotes}}
+				</p>
+			</div>
+		</section>
+
+		<section>
+			<form ng-submit="addSuggestion()" style="margin-top: 50px">
+				<h3> Submit Your Suggestion </h3>
+				<div class="form-group">
+					<input type="text" maxlength="140" class="form-control" placeholder="Great ideas here..." ng-model="title"></input>
+				</div>
+				<button type="submit" class="btn btn-primary">Suggest</button>
+			</form>
+		</section>
+	 
+		<!-- Modules -->
+		<script type="text/javascript" src="js/app.js"></script>
+		 
+		<!-- Controllers -->
+		<script type="text/javascript" src="js/controllers/HomeController.js"></script>
+		 
+		<!-- Services -->
+		<script type="text/javascript" src="js/services/suggestions.js"></script>
+
+	</body>
+</html>
